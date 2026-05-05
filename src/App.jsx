@@ -1,78 +1,21 @@
-import { useState, useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Polyline } from "react-leaflet";
+import { useState } from "react";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import L from "leaflet";
-
-// ピン修正
-import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
-import markerIcon from "leaflet/dist/images/marker-icon.png";
-import markerShadow from "leaflet/dist/images/marker-shadow.png";
-
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: markerIcon2x,
-  iconUrl: markerIcon,
-  shadowUrl: markerShadow,
-});
 
 import { spots } from "./data/spots";
 import { courses } from "./data/courses";
 
 function App() {
   const [selectedCourse, setSelectedCourse] = useState(null);
-  const [lang, setLang] = useState("ja");
-  const [favorites, setFavorites] = useState([]);
-
-  // 保存
-  useEffect(() => {
-    const saved = localStorage.getItem("fav");
-    if (saved) setFavorites(JSON.parse(saved));
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("fav", JSON.stringify(favorites));
-  }, [favorites]);
-
-  // 座標
-  const coords = selectedCourse
-    ? selectedCourse.spots
-        .map((id) => {
-          const s = spots.find((sp) => sp.id === id);
-          if (!s) return null;
-          return [s.lat, s.lng];
-        })
-        .filter(Boolean)
-    : [];
-
-  // 音声
-  const speak = (text) => {
-    const uttr = new SpeechSynthesisUtterance(text);
-    uttr.lang = lang === "ja" ? "ja-JP" : "en-US";
-    speechSynthesis.speak(uttr);
-  };
 
   return (
     <div className="container">
 
       <h1>今治観光ナビ</h1>
 
-      {/* 言語 */}
-      <div className="lang">
-        {["ja","en","zh","ko"].map(l => (
-          <button
-            key={l}
-            className={lang===l ? "active" : ""}
-            onClick={()=>setLang(l)}
-          >
-            {l==="ja"?"日本語":l==="en"?"English":l==="zh"?"中文":"한국어"}
-          </button>
-        ))}
-      </div>
-
       {/* コース */}
-      <h2>コース選択</h2>
       <div className="course-buttons">
-        {courses.map((c) => (
+        {courses.map(c => (
           <button key={c.id} onClick={() => setSelectedCourse(c)}>
             {c.name}
           </button>
@@ -81,99 +24,40 @@ function App() {
 
       {/* 地図 */}
       {selectedCourse && (
-        <div className="map-wrap">
-          <MapContainer
-            center={coords[0] || [34.06, 133.0]}
-            zoom={13}
-            style={{ height: "250px" }}
-          >
-            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            {coords.map((pos, i) => (
-              <Marker key={i} position={pos} />
-            ))}
-            <Polyline positions={coords} />
-          </MapContainer>
+        <MapContainer
+          center={[34.06, 133.0]}
+          zoom={10}
+          style={{ height: "250px", marginTop: "20px" }}
+        >
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          <Marker position={[34.06, 133.0]} />
+        </MapContainer>
+      )}
+
+      {/* スポット */}
+      {selectedCourse && (
+        <div className="spots">
+          {selectedCourse.spots.map(id => {
+            const spot = spots.find(s => s.id === id);
+            if (!spot) return null;
+
+            return (
+              <div key={id} className="card">
+
+                {/* 横スクロール画像 */}
+                <div className="image-row">
+                  <img src={spot.image} />
+                </div>
+
+                <h3>{spot.name?.ja}</h3>
+                <p>{spot.desc?.ja}</p>
+
+              </div>
+            );
+          })}
         </div>
       )}
 
-      {/* ⭐ お気に入り */}
-      <h2>⭐ お気に入り</h2>
-      <div className="spots-grid">
-        {favorites.map((id) => {
-          const spot = spots.find((s) => s.id === id);
-          if (!spot) return null;
-
-          return (
-            <div key={id} className="card small">
-              <img src={spot.image || "https://via.placeholder.com/300"} />
-              <h3>{spot.name?.[lang] || spot.name?.ja}</h3>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* 詳細 */}
-      {selectedCourse && (
-        <>
-          <h2>場所の詳細</h2>
-
-          <div className="spots-grid">
-            {selectedCourse.spots.map((id) => {
-              const spot = spots.find((s) => s.id === id);
-              if (!spot) return null;
-
-              return (
-                <div key={id} className="card">
-
-                  {/* 🔥 横スクロール画像 */}
-                  <div className="image-row">
-                    <img src={spot.image || "https://via.placeholder.com/300"} />
-                  </div>
-
-                  <h3>{spot.name?.[lang] || spot.name?.ja}</h3>
-
-                  <p>{spot.desc?.[lang] || spot.desc?.ja}</p>
-
-                  <p>📍 {spot.address?.[lang] || spot.address}</p>
-                  <p>⏰ {spot.hours?.[lang] || spot.hours}</p>
-
-                  {/* ⭐ */}
-                  <button
-                    className="main-btn"
-                    onClick={() => {
-                      setFavorites((prev) =>
-                        prev.includes(id)
-                          ? prev.filter((i) => i !== id)
-                          : [...prev, id]
-                      );
-                    }}
-                  >
-                    ⭐ お気に入り
-                  </button>
-
-                  {/* サブボタン */}
-                  <div className="sub-buttons">
-                    <button onClick={() => speak(spot.desc?.[lang] || "")}>
-                      🔊
-                    </button>
-
-                    <button
-                      onClick={() =>
-                        window.open(
-                          `https://www.google.com/maps?q=${spot.lat},${spot.lng}`
-                        )
-                      }
-                    >
-                      🚗
-                    </button>
-                  </div>
-
-                </div>
-              );
-            })}
-          </div>
-        </>
-      )}
     </div>
   );
 }

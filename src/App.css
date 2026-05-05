@@ -5,27 +5,7 @@ body {
 }
 
 .container {
-  max-width: 1000px;
-  margin: auto;
   padding: 20px;
-}
-
-h1 {
-  font-size: 34px;
-}
-
-/* 言語 */
-.lang button {
-  margin-right: 10px;
-  padding: 8px 16px;
-  border-radius: 20px;
-  border: none;
-  background: #e5e7eb;
-}
-
-.lang button.active {
-  background: #3b82f6;
-  color: white;
 }
 
 /* コース */
@@ -43,69 +23,27 @@ h1 {
   color: white;
 }
 
-/* 地図 */
-.map-wrap {
-  margin: 20px 0;
-  border-radius: 12px;
-  overflow: hidden;
+/* スポット */
+.spots {
+  margin-top: 20px;
 }
 
-/* グリッド */
-.spots-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-}
-
-/* カード */
 .card {
   background: white;
-  padding: 12px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 10px;
 }
 
-.card.small {
-  padding: 8px;
-}
-
-/* 🔥 横スクロール画像 */
+/* 横スクロール画像 */
 .image-row {
   display: flex;
   overflow-x: auto;
-  gap: 10px;
 }
 
 .image-row img {
-  width: 220px;
-  height: 150px;
+  width: 200px;
+  height: 140px;
   object-fit: cover;
-  border-radius: 10px;
-  flex-shrink: 0;
-}
-
-/* ボタン */
-.main-btn {
-  width: 100%;
-  background: #ff9800;
-  color: white;
-  margin-top: 10px;
-  border-radius: 10px;
-}
-
-.sub-buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 8px;
-}
-
-.sub-buttons button {
-  flex: 1;
-}
-
-/* スマホ */
-@media (max-width:768px){
-  .spots-grid{
-    grid-template-columns:1fr;
-  }
+  margin-right: 10px;
 }
