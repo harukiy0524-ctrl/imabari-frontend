@@ -33,7 +33,6 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 10px;
 }
 
 .course-buttons button {
@@ -70,19 +69,19 @@ h1 {
   padding: 8px;
 }
 
-.card img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-/* 横スクロール画像 */
-.image-scroll {
+/* 🔥 横スクロール画像 */
+.image-row {
+  display: flex;
   overflow-x: auto;
+  gap: 10px;
 }
 
-.image-scroll img {
-  width: 500px;
-  max-width: none;
+.image-row img {
+  width: 220px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  flex-shrink: 0;
 }
 
 /* ボタン */

@@ -15,7 +15,6 @@ L.Icon.Default.mergeOptions({
   shadowUrl: markerShadow,
 });
 
-// データ
 import { spots } from "./data/spots";
 import { courses } from "./data/courses";
 
@@ -24,7 +23,7 @@ function App() {
   const [lang, setLang] = useState("ja");
   const [favorites, setFavorites] = useState([]);
 
-  // ⭐ 保存
+  // 保存
   useEffect(() => {
     const saved = localStorage.getItem("fav");
     if (saved) setFavorites(JSON.parse(saved));
@@ -34,7 +33,7 @@ function App() {
     localStorage.setItem("fav", JSON.stringify(favorites));
   }, [favorites]);
 
-  // 座標安全
+  // 座標
   const coords = selectedCourse
     ? selectedCourse.spots
         .map((id) => {
@@ -45,7 +44,7 @@ function App() {
         .filter(Boolean)
     : [];
 
-  // 🔊 音声
+  // 音声
   const speak = (text) => {
     const uttr = new SpeechSynthesisUtterance(text);
     uttr.lang = lang === "ja" ? "ja-JP" : "en-US";
@@ -55,7 +54,6 @@ function App() {
   return (
     <div className="container">
 
-      {/* タイトル */}
       <h1>今治観光ナビ</h1>
 
       {/* 言語 */}
@@ -87,7 +85,7 @@ function App() {
           <MapContainer
             center={coords[0] || [34.06, 133.0]}
             zoom={13}
-            style={{ height: "300px" }}
+            style={{ height: "250px" }}
           >
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {coords.map((pos, i) => (
@@ -104,6 +102,7 @@ function App() {
         {favorites.map((id) => {
           const spot = spots.find((s) => s.id === id);
           if (!spot) return null;
+
           return (
             <div key={id} className="card small">
               <img src={spot.image || "https://via.placeholder.com/300"} />
@@ -126,13 +125,15 @@ function App() {
               return (
                 <div key={id} className="card">
 
-                  {/* 横スクロール画像 */}
-                  <div className="image-scroll">
-                    <img src={spot.image || "https://via.placeholder.com/400"} />
+                  {/* 🔥 横スクロール画像 */}
+                  <div className="image-row">
+                    <img src={spot.image || "https://via.placeholder.com/300"} />
                   </div>
 
                   <h3>{spot.name?.[lang] || spot.name?.ja}</h3>
+
                   <p>{spot.desc?.[lang] || spot.desc?.ja}</p>
+
                   <p>📍 {spot.address?.[lang] || spot.address}</p>
                   <p>⏰ {spot.hours?.[lang] || spot.hours}</p>
 
@@ -150,10 +151,21 @@ function App() {
                     ⭐ お気に入り
                   </button>
 
-                  {/* サブ */}
+                  {/* サブボタン */}
                   <div className="sub-buttons">
-                    <button onClick={() => speak(spot.desc?.[lang] || "")}>🔊</button>
-                    <button onClick={() => window.open(`https://www.google.com/maps?q=${spot.lat},${spot.lng}`)}>🚗</button>
+                    <button onClick={() => speak(spot.desc?.[lang] || "")}>
+                      🔊
+                    </button>
+
+                    <button
+                      onClick={() =>
+                        window.open(
+                          `https://www.google.com/maps?q=${spot.lat},${spot.lng}`
+                        )
+                      }
+                    >
+                      🚗
+                    </button>
                   </div>
 
                 </div>
