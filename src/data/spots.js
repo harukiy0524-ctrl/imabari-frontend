@@ -59,7 +59,7 @@ export const spots_part1 = [
 
 ];
 
-export const spots_part1 = [
+
 
   {
     id:"imabari_castle",
