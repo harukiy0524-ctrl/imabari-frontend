@@ -1,248 +1,217 @@
 export const spots_part1 = [
 
-  {
-    id:"imabari_castle",
-    name:{ja:"今治城",en:"Imabari Castle"},
-    catch:{ja:"海に囲まれた珍しい城"},
-    desc:{ja:"海水の堀を持つ珍しい城で、今治の代表観光地。"},
-    image:"https://upload.wikimedia.org/wikipedia/commons/6/6e/Imabari_Castle.jpg",
-    lat:34.063422,lng:133.006778,
-    address:"今治市",
-    hours:"9:00〜17:00"
-  },
+{
+id:"kirosan",
+name:{
+  ja:"亀老山展望公園",
+  en:"Kirosan Observatory",
+  zh:"龟老山展望公园",
+  ko:"키로산 전망공원"
+},
+catch:{
+  ja:"瀬戸内海の絶景",
+  en:"Amazing sea view",
+  zh:"濑户内海绝景",
+  ko:"세토내해 절경"
+},
+desc:{
+  ja:"しまなみ海道を一望できる人気展望スポット。",
+  en:"A famous viewpoint overlooking Shimanami Kaido.",
+  zh:"可以俯瞰岛波海道的景点。",
+  ko:"시마나미 카이도를 볼 수 있는 명소."
+},
+image:"https://upload.wikimedia.org/wikipedia/commons/0/0c/Kirosan_View.jpg",
+address:"今治市吉海町南浦487-4",
+hours:"年中無休",
+lat:34.1200791,lng:133.0334399
+},
 
-  {
-    id:"imabari_towel",
-    name:{ja:"今治タオル本店"},
-    catch:{ja:"有名タオルブランド"},
-    desc:{ja:"高品質な今治タオルを体験できるショップ。"},
-    image:"https://images.unsplash.com/photo-1581578731548-c64695cc6952",
-    lat:34.061547,lng:133.016388,
-    address:"今治市"
-  },
+{
+id:"paysan",
+name:{
+  ja:"Paysan",
+  en:"Bakery Paysan",
+  zh:"面包店",
+  ko:"빵집"
+},
+catch:{
+  ja:"人気パン屋",
+  en:"Popular bakery",
+  zh:"人气面包店",
+  ko:"인기 빵집"
+},
+desc:{
+  ja:"地元で人気のパン屋。",
+  en:"A popular local bakery.",
+  zh:"当地受欢迎的面包店。",
+  ko:"지역 인기 빵집."
+},
+image:"https://images.unsplash.com/photo-1509440159596-0249088772ff",
+address:"今治市吉海町本庄477",
+hours:"11:00～17:00",
+lat:34.15,lng:133.03
+},
 
-  {
-    id:"yakitori_maruya",
-    name:{ja:"焼き鳥"},
-    catch:{ja:"今治名物グルメ"},
-    desc:{ja:"鉄板で焼く独特な今治焼き鳥。"},
-    image:"https://images.unsplash.com/photo-1604908177522-402b7b2d1e8b",
-    lat:34.058829,lng:133.003616
-  },
+{
+id:"cafe_shozan",
+name:{
+  ja:"Café Shozan",
+  en:"Cafe Shozan",
+  zh:"咖啡店",
+  ko:"카페"
+},
+catch:{
+  ja:"おしゃれカフェ",
+  en:"Stylish cafe",
+  zh:"时尚咖啡店",
+  ko:"감성 카페"
+},
+desc:{
+  ja:"落ち着いた雰囲気のカフェ。",
+  en:"Relaxing cafe.",
+  zh:"氛围安静的咖啡店。",
+  ko:"편안한 분위기 카페."
+},
+image:"https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb",
+address:"今治市吉海町福田119",
+hours:"10:00～16:00",
+lat:34.157833,lng:133.040907
+},
 
-  {
-    id:"sunrise_itoyama",
-    name:{ja:"サンライズ糸山"},
-    catch:{ja:"しまなみ海道の入口"},
-    desc:{ja:"サイクリングの出発地点として人気。"},
-    image:"https://upload.wikimedia.org/wikipedia/commons/3/3f/Kurushima_Kaikyo_Bridge.jpg",
-    lat:34.110228,lng:132.977451
-  },
-
-  {
-    id:"kurushima_view",
-    name:{ja:"来島海峡展望館"},
-    catch:{ja:"橋の絶景"},
-    desc:{ja:"来島海峡大橋を一望できるスポット。"},
-    image:"https://upload.wikimedia.org/wikipedia/commons/3/3f/Kurushima_Kaikyo_Bridge.jpg",
-    lat:34.150,lng:132.980
-  },
-
-  {
-    id:"kirosan",
-    name:{ja:"亀老山展望公園"},
-    catch:{ja:"夕日が最高"},
-    desc:{ja:"瀬戸内海の絶景が見られる展望台。"},
-    image:"https://upload.wikimedia.org/wikipedia/commons/0/0c/Kirosan_View.jpg",
-    lat:34.1200791,lng:133.0334399
-  }
-
-];
-
-
-
-  {
-    id:"imabari_castle",
-    name:{
-      ja:"今治城",en:"Imabari Castle",zh:"今治城",ko:"이마바리 성"
-    },
-    catch:{
-      ja:"海に囲まれた珍しい城",
-      en:"A rare castle surrounded by seawater",
-      zh:"被海水环绕的城堡",
-      ko:"바닷물로 둘러싸인 성"
-    },
-    desc:{
-      ja:"堀に海水が流れ込む日本でも珍しい海城。",
-      en:"A rare seaside castle.",
-      zh:"护城河引入海水的城堡。",
-      ko:"해수가 해자로 들어오는 성."
-    },
-    image:"https://upload.wikimedia.org/wikipedia/commons/6/6e/Imabari_Castle.jpg",
-    lat:34.063422,lng:133.006778,
-    address:"今治市",
-    hours:"9:00〜17:00"
-  },
-
-  {
-    id:"imabari_towel",
-    name:{
-      ja:"今治タオル本店",en:"Imabari Towel",zh:"今治毛巾",ko:"타월"
-    },
-    catch:{
-      ja:"高品質タオルブランド",
-      en:"Famous towel brand"
-    },
-    desc:{
-      ja:"今治タオルを購入できる人気ショップ。",
-      en:"Shop for famous towels"
-    },
-    image:"https://images.unsplash.com/photo-1581578731548-c64695cc6952",
-    lat:34.061547,lng:133.016388
-  },
-
-  {
-    id:"yakitori_maruya",
-    name:{
-      ja:"焼き鳥",en:"Yakitori"
-    },
-    catch:{ja:"今治名物"},
-    desc:{ja:"鉄板で焼く独特な焼き鳥。"},
-    image:"https://images.unsplash.com/photo-1604908177522-402b7b2d1e8b",
-    lat:34.058829,lng:133.003616
-  },
-
-  {
-    id:"sunrise_itoyama",
-    name:{ja:"サンライズ糸山",en:"Sunrise Itoyama"},
-    catch:{ja:"しまなみ海道入口"},
-    desc:{ja:"サイクリングの出発地。"},
-    image:"https://upload.wikimedia.org/wikipedia/commons/3/3f/Kurushima_Kaikyo_Bridge.jpg",
-    lat:34.110228,lng:132.977451
-  },
-
-  {
-    id:"kurushima_view",
-    name:{ja:"来島海峡展望館",en:"View"},
-    catch:{ja:"橋の絶景"},
-    desc:{ja:"来島海峡大橋が見える。"},
-    image:"https://upload.wikimedia.org/wikipedia/commons/3/3f/Kurushima_Kaikyo_Bridge.jpg",
-    lat:34.150,lng:132.980
-  },
-
-  {
-    id:"kirosan",
-    name:{ja:"亀老山",en:"Kirosan"},
-    catch:{ja:"夕日スポット"},
-    desc:{ja:"瀬戸内海の絶景が見られる。"},
-    image:"https://upload.wikimedia.org/wikipedia/commons/0/0c/Kirosan_View.jpg",
-    lat:34.1200791,lng:133.0334399
-  }
+{
+id:"imabari_castle",
+name:{
+  ja:"今治城",
+  en:"Imabari Castle",
+  zh:"今治城",
+  ko:"이마바리 성"
+},
+catch:{
+  ja:"海の城",
+  en:"Sea castle",
+  zh:"海城",
+  ko:"바다 성"
+},
+desc:{
+  ja:"海水の堀を持つ珍しい城。",
+  en:"A rare castle with seawater moat.",
+  zh:"拥有海水护城河的城堡。",
+  ko:"해수 해자를 가진 성."
+},
+image:"https://upload.wikimedia.org/wikipedia/commons/6/6e/Imabari_Castle.jpg",
+address:"今治市通町3-1-3",
+hours:"9:00～17:00",
+lat:34.063422,lng:133.006778
+}
 
 ];
 
 export const spots_part2 = [
 
-  {
-    id:"oomishima_shrine",
-    name:{ja:"大山祇神社",en:"Shrine"},
-    catch:{ja:"歴史神社"},
-    desc:{ja:"武将ゆかりの神社。"},
-    image:"https://upload.wikimedia.org/wikipedia/commons/5/5f/Oyamazumi_Shrine.jpg",
-    lat:34.247927,lng:133.005731
-  },
+{
+id:"sunrise_itoyama",
+name:{
+  ja:"サンライズ糸山",
+  en:"Sunrise Itoyama",
+  zh:"糸山",
+  ko:"선라이즈 이토야마"
+},
+catch:{
+  ja:"サイクリング出発地",
+  en:"Cycling start",
+  zh:"骑行起点",
+  ko:"자전거 시작점"
+},
+desc:{
+  ja:"しまなみ海道の入口。",
+  en:"Start of Shimanami Kaido.",
+  zh:"岛波海道入口。",
+  ko:"시마나미 시작점."
+},
+image:"https://upload.wikimedia.org/wikipedia/commons/3/3f/Kurushima_Kaikyo_Bridge.jpg",
+address:"今治市砂場町2-8-1",
+lat:34.110228,lng:132.977451
+},
 
-  {
-    id:"limone",
-    name:{ja:"リモーネ"},
-    catch:{ja:"レモンスイーツ"},
-    desc:{ja:"柑橘スイーツの人気店。"},
-    image:"https://images.unsplash.com/photo-1497534446932-c925b458314e",
-    lat:34.226227,lng:133.050288
-  },
+{
+id:"kurushima_view",
+name:{
+  ja:"来島海峡展望館",
+  en:"Kurushima View",
+  zh:"来岛海峡展望馆",
+  ko:"전망대"
+},
+catch:{
+  ja:"橋の絶景",
+  en:"Bridge view",
+  zh:"桥景",
+  ko:"다리 절경"
+},
+desc:{
+  ja:"来島海峡大橋を一望できる。",
+  en:"View of Kurushima Bridge.",
+  zh:"可以看到大桥。",
+  ko:"대교 전망."
+},
+image:"https://upload.wikimedia.org/wikipedia/commons/3/3f/Kurushima_Kaikyo_Bridge.jpg",
+address:"今治市小浦町2丁目5-2",
+lat:34.15,lng:132.98
+},
 
-  {
-    id:"lemontable",
-    name:{ja:"レモンドリンク"},
-    catch:{ja:"爽やかドリンク"},
-    desc:{ja:"レモン系飲み物が人気。"},
-    image:"https://images.unsplash.com/photo-1502741338009-cac2772e18bc",
-    lat:34.225618,lng:133.052841
-  },
+{
+id:"limone",
+name:{
+  ja:"リモーネ",
+  en:"Limone",
+  zh:"柠檬店",
+  ko:"리모네"
+},
+catch:{
+  ja:"レモンスイーツ",
+  en:"Lemon sweets",
+  zh:"柠檬甜点",
+  ko:"레몬 디저트"
+},
+desc:{
+  ja:"柑橘スイーツの人気店。",
+  en:"Popular citrus sweets.",
+  zh:"柑橘甜品店。",
+  ko:"감귤 디저트."
+},
+image:"https://images.unsplash.com/photo-1497534446932-c925b458314e",
+address:"今治市上浦町瀬戸2342",
+lat:34.226227,lng:133.050288
+},
 
-  {
-    id:"murakami",
-    name:{ja:"和菓子"},
-    catch:{ja:"伝統菓子"},
-    desc:{ja:"地元で人気の和菓子。"},
-    image:"https://images.unsplash.com/photo-1604908812766-1c4e5a52b219",
-    lat:34.248669,lng:133.003187
-  },
-
-  {
-    id:"mikan_farm",
-    name:{ja:"みかん農園"},
-    catch:{ja:"収穫体験"},
-    desc:{ja:"みかん狩りができる。"},
-    image:"https://images.unsplash.com/photo-1574226516831-e1dff420e8f8",
-    lat:34.248748,lng:133.004096
-  },
-
-  {
-    id:"wakka",
-    name:{ja:"WAKKA"},
-    catch:{ja:"体験施設"},
-    desc:{ja:"宿泊・体験ができる施設。"},
-    image:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
-    lat:34.2641,lng:133.042765
-  },
-
-  {
-    id:"tamagawa_museum",
-    name:{ja:"美術館"},
-    catch:{ja:"静かな文化施設"},
-    desc:{ja:"自然に囲まれた美術館。"},
-    image:"https://images.unsplash.com/photo-1549893079-842e7c2a6f3c",
-    lat:34.072001,lng:132.944552
-  },
-
-  {
-    id:"kobo_oriza",
-    name:{ja:"工房"},
-    catch:{ja:"織物体験"},
-    desc:{ja:"タオル作り体験ができる。"},
-    image:"https://images.unsplash.com/photo-1503387762-592deb58ef4e",
-    lat:33.977467,lng:132.940847
-  },
-
-  {
-    id:"towel_museum",
-    name:{ja:"タオル美術館"},
-    catch:{ja:"展示施設"},
-    desc:{ja:"タオルの歴史が学べる。"},
-    image:"https://images.unsplash.com/photo-1581578731548-c64695cc6952",
-    lat:33.969056,lng:133.032444
-  },
-
-  {
-    id:"onsen",
-    name:{ja:"温泉"},
-    catch:{ja:"癒しスポット"},
-    desc:{ja:"自然の温泉地。"},
-    image:"https://images.unsplash.com/photo-1544161515-4ab6ce6db874",
-    lat:33.980976,lng:132.933136
-  },
-
-  {
-    id:"oufu_i",
-    name:{ja:"中華料理"},
-    catch:{ja:"ランチ人気"},
-    desc:{ja:"地元人気の中華料理店。"},
-    image:"https://images.unsplash.com/photo-1546069901-ba9599a7e63c",
-    lat:33.969957,lng:133.033051
-  }
+{
+id:"oomishima_shrine",
+name:{
+  ja:"大山祇神社",
+  en:"Oyamazumi Shrine",
+  zh:"大山祇神社",
+  ko:"신사"
+},
+catch:{
+  ja:"歴史神社",
+  en:"Historic shrine",
+  zh:"历史神社",
+  ko:"역사 신사"
+},
+desc:{
+  ja:"武将ゆかりの神社。",
+  en:"Shrine of samurai history.",
+  zh:"与武士有关。",
+  ko:"무장 관련 신사."
+},
+image:"https://upload.wikimedia.org/wikipedia/commons/5/5f/Oyamazumi_Shrine.jpg",
+address:"今治市大三島町宮浦3327",
+lat:34.247927,lng:133.005731
+}
 
 ];
 
-// 👇これ重要
-export const spots = [...spots_part1, ...spots_part2];
+export const spots = [
+  ...spots_part1,
+  ...spots_part2,
+  ...spots_part3
+];
