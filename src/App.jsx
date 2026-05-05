@@ -1,4 +1,4 @@
-iimport { useState } from "react";
+import { useState } from "react";
 import { spots } from "./data/spots";
 import { courses } from "./data/courses";
 
