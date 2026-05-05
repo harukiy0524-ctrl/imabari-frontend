@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Polyline } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -22,17 +22,35 @@ import { courses } from "./data/courses";
 function App() {
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [lang, setLang] = useState("ja");
+  const [favorites, setFavorites] = useState([]);
 
-  // 座標安全版
+  // ⭐ 保存
+  useEffect(() => {
+    const saved = localStorage.getItem("fav");
+    if (saved) setFavorites(JSON.parse(saved));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("fav", JSON.stringify(favorites));
+  }, [favorites]);
+
+  // 座標安全
   const coords = selectedCourse
     ? selectedCourse.spots
-        .map(id => {
-          const s = spots.find(sp => sp.id === id);
+        .map((id) => {
+          const s = spots.find((sp) => sp.id === id);
           if (!s) return null;
           return [s.lat, s.lng];
         })
         .filter(Boolean)
     : [];
+
+  // 🔊 音声
+  const speak = (text) => {
+    const uttr = new SpeechSynthesisUtterance(text);
+    uttr.lang = lang === "ja" ? "ja-JP" : "en-US";
+    speechSynthesis.speak(uttr);
+  };
 
   return (
     <div className="container">
@@ -41,18 +59,18 @@ function App() {
       <h1>今治観光ナビ</h1>
 
       {/* 言語 */}
-      <div>
-        <button onClick={()=>setLang("ja")}>日本語</button>
-        <button onClick={()=>setLang("en")}>English</button>
-        <button onClick={()=>setLang("zh")}>中文</button>
-        <button onClick={()=>setLang("ko")}>한국어</button>
+      <div className="lang">
+        <button onClick={() => setLang("ja")}>日本語</button>
+        <button onClick={() => setLang("en")}>EN</button>
+        <button onClick={() => setLang("zh")}>中文</button>
+        <button onClick={() => setLang("ko")}>한국어</button>
       </div>
 
       {/* コース */}
       <h2>コース</h2>
       <div className="course-buttons">
-        {courses.map(c => (
-          <button key={c.id} onClick={()=>setSelectedCourse(c)}>
+        {courses.map((c) => (
+          <button key={c.id} onClick={() => setSelectedCourse(c)}>
             {c.name}
           </button>
         ))}
@@ -62,13 +80,13 @@ function App() {
       {selectedCourse && (
         <div className="map-wrap">
           <MapContainer
-            center={coords[0] || [34.06,133.0]}
+            center={coords[0] || [34.06, 133.0]}
             zoom={13}
-            style={{ height:"350px", width:"100%" }}
+            style={{ height: "300px" }}
           >
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-            {coords.map((pos,i)=>(
+            {coords.map((pos, i) => (
               <Marker key={i} position={pos} />
             ))}
 
@@ -77,22 +95,39 @@ function App() {
         </div>
       )}
 
+      {/* ⭐ お気に入り */}
+      <h2>⭐ お気に入り</h2>
+      <div className="spots-grid">
+        {favorites.map((id) => {
+          const spot = spots.find((s) => s.id === id);
+          if (!spot) return null;
+
+          return (
+            <div key={id} className="card">
+              <img src={spot.image || "https://via.placeholder.com/300"} />
+              <h3>{spot.name?.[lang] || spot.name?.ja}</h3>
+            </div>
+          );
+        })}
+      </div>
+
       {/* 詳細 */}
       {selectedCourse && (
         <>
           <h2>場所の詳細</h2>
 
           <div className="spots-grid">
-            {selectedCourse.spots.map(id => {
-              const spot = spots.find(s=>s.id === id);
-              if(!spot) return null;
+            {selectedCourse.spots.map((id) => {
+              const spot = spots.find((s) => s.id === id);
+              if (!spot) return null;
 
               return (
                 <div key={id} className="card">
 
-                  <img
-                    src={spot.image || "https://via.placeholder.com/300"}
-                  />
+                  {/* 横スクロール画像 */}
+                  <div className="image-scroll">
+                    <img src={spot.image || "https://via.placeholder.com/400"} />
+                  </div>
 
                   <h3>{spot.name?.[lang] || spot.name?.ja}</h3>
 
@@ -101,19 +136,46 @@ function App() {
                   <p>📍 {spot.address?.[lang] || spot.address}</p>
                   <p>⏰ {spot.hours?.[lang] || spot.hours}</p>
 
-                  <button>☆ お気に入り</button>
-                  <button>🔊 音声</button>
-                  <button>🚗 ナビ開始</button>
+                  {/* ⭐ */}
+                  <button
+                    className="main-btn"
+                    onClick={() => {
+                      setFavorites((prev) =>
+                        prev.includes(id)
+                          ? prev.filter((i) => i !== id)
+                          : [...prev, id]
+                      );
+                    }}
+                  >
+                    ⭐ お気に入り
+                  </button>
 
+                  {/* サブ */}
+                  <div className="sub-buttons">
+                    <button onClick={() => speak(spot.desc?.[lang] || "")}>
+                      🔊
+                    </button>
+
+                    <button
+                      onClick={() =>
+                        window.open(
+                          `https://www.google.com/maps?q=${spot.lat},${spot.lng}`
+                        )
+                      }
+                    >
+                      🚗
+                    </button>
+                  </div>
                 </div>
               );
             })}
           </div>
         </>
       )}
-
     </div>
   );
 }
+
+export default App;
 
 export default App;
