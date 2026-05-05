@@ -1,84 +1,215 @@
+/* ===== 全体 ===== */
 body {
   margin: 0;
-  font-family: sans-serif;
-  background: #f3f4f6;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f5f7fb;
+  color: #111;
 }
 
 .app {
-  max-width: 1000px;
+  max-width: 900px;
   margin: auto;
-  padding: 20px;
+  padding: 16px;
 }
 
+/* ===== タイトル ===== */
 h1 {
-  font-size: 32px;
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
-/* ボタン */
-button {
-  border: none;
-  border-radius: 20px;
-  padding: 8px 14px;
-  margin: 5px;
-  background: #e5e7eb;
-}
-
-/* コース */
-.course-buttons {
+/* ===== 言語 ===== */
+.lang {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
+  margin-bottom: 16px;
 }
 
-.course-buttons button {
-  background: #3b82f6;
+.lang button {
+  border: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  font-size: 13px;
+}
+
+.lang button.active {
+  background: #2563eb;
   color: white;
 }
 
-/* 地図 */
-.map-box {
-  height: 300px;
-  border-radius: 15px;
-  overflow: hidden;
+/* ===== コース ===== */
+.course-buttons {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  margin-bottom: 18px;
 }
 
-/* 横スクロール */
+.course-buttons button {
+  flex-shrink: 0;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #2563eb;
+  color: white;
+  font-size: 13px;
+}
+
+/* ===== フィルター ===== */
+.filter {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  margin-bottom: 14px;
+}
+
+.filter button {
+  flex-shrink: 0;
+  border: none;
+  border-radius: 999px;
+  padding: 6px 12px;
+  background: #e5e7eb;
+  font-size: 13px;
+}
+
+.filter button.active {
+  background: #111827;
+  color: white;
+}
+
+/* ===== 地図 ===== */
+.map-box {
+  height: 260px;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+/* ===== お気に入り ===== */
+.fav-row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.fav-item {
+  flex-shrink: 0;
+  background: #fff7ed;
+  color: #ea580c;
+  border: none;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+/* ===== 横スクロール ===== */
 .spots-row {
   display: flex;
-  gap: 15px;
+  gap: 14px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  padding-bottom: 20px;
 }
 
 .spots-row::-webkit-scrollbar {
   display: none;
 }
 
-/* カード */
+/* ===== カード ===== */
 .card {
-  min-width: 260px;
+  min-width: 240px;
   background: white;
-  border-radius: 15px;
-  padding: 10px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
   scroll-snap-align: start;
-  transition: 0.3s;
+  transition: 0.25s;
 }
 
 .card.active {
-  transform: scale(1.05);
+  transform: scale(1.04);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.15);
 }
 
-/* 画像 */
+/* ===== 画像 ===== */
 .card img {
   width: 100%;
-  height: 140px;
+  height: 130px;
   object-fit: cover;
-  border-radius: 10px;
 }
 
-/* お気に入り */
-.fav-row {
+/* ===== 中身 ===== */
+.card-content {
+  padding: 10px;
+}
+
+.card h3 {
+  font-size: 15px;
+  margin: 6px 0;
+}
+
+.card p {
+  font-size: 12px;
+  color: #555;
+}
+
+/* ===== 距離 ===== */
+.distance {
+  font-size: 12px;
+  color: #2563eb;
+}
+
+/* ===== 徒歩時間 ===== */
+.time {
+  font-size: 12px;
+  color: #10b981;
+}
+
+/* ===== ボタン ===== */
+.btn-row {
   display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.btn {
+  flex: 1;
+  border: none;
+  border-radius: 10px;
+  padding: 6px;
+  font-size: 12px;
+}
+
+/* 色分け */
+.btn-fav {
+  background: #f59e0b;
+  color: white;
+}
+
+.btn-speak {
+  background: #10b981;
+  color: white;
+}
+
+.btn-map {
+  background: #3b82f6;
+  color: white;
+}
+
+/* ===== スマホ ===== */
+@media (max-width: 768px) {
+  .card {
+    min-width: 200px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  .map-box {
+    height: 220px;
+  }
 }
