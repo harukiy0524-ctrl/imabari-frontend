@@ -95,9 +95,7 @@ export const spots = [
     holiday:{ja:"情報なし",en:"No information",zh:"暂无信息",ko:"정보 없음"},
     image:"https://images.unsplash.com/photo-1603909223429-69bb7101f420",
     lat:33.980976,lng:132.933136
-  }
-
-];
+  },
 
   {
     id:"oriza",
