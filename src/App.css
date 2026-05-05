@@ -2,63 +2,28 @@ body {
   margin: 0;
   font-family: sans-serif;
   background: #f3f4f6;
-  color: #111827;
 }
 
 .app {
-  max-width: 1100px;
+  max-width: 1000px;
   margin: auto;
   padding: 20px;
 }
 
-.hero {
-  background: white;
-  padding: 24px;
-  border-radius: 18px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  margin-bottom: 20px;
+h1 {
+  font-size: 32px;
 }
 
-.hero h1 {
-  font-size: 36px;
-  margin: 0 0 8px;
-}
-
-.hero p {
-  margin: 0 0 18px;
-  color: #6b7280;
-}
-
-.lang {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.lang button,
-.course-buttons button,
-.favorite-list button {
+/* ボタン */
+button {
   border: none;
-  border-radius: 999px;
-  padding: 9px 16px;
+  border-radius: 20px;
+  padding: 8px 14px;
+  margin: 5px;
   background: #e5e7eb;
-  cursor: pointer;
 }
 
-.lang button.active,
-.course-buttons button.selected {
-  background: #2563eb;
-  color: white;
-}
-
-.section {
-  margin-bottom: 24px;
-}
-
-.section h2 {
-  margin: 0 0 12px;
-}
-
+/* コース */
 .course-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -70,23 +35,18 @@ body {
   color: white;
 }
 
+/* 地図 */
 .map-box {
-  height: 320px;
+  height: 300px;
+  border-radius: 15px;
   overflow: hidden;
-  border-radius: 18px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
-.map {
-  width: 100%;
-  height: 100%;
-}
-
+/* 横スクロール */
 .spots-row {
   display: flex;
-  gap: 16px;
+  gap: 15px;
   overflow-x: auto;
-  padding: 8px 4px 18px;
   scroll-snap-type: x mandatory;
 }
 
@@ -94,113 +54,31 @@ body {
   display: none;
 }
 
-.spot-card {
+/* カード */
+.card {
   min-width: 260px;
-  max-width: 260px;
   background: white;
-  border-radius: 18px;
-  padding: 14px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-  scroll-snap-align: start;
-  transition: 0.25s;
-  cursor: pointer;
-}
-
-.spot-card.active {
-  transform: scale(1.04);
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
-}
-
-.spot-card img {
-  width: 100%;
-  height: 130px;
-  object-fit: cover;
-  border-radius: 14px;
-}
-
-.spot-card h3 {
-  font-size: 18px;
-  margin: 10px 0 6px;
-}
-
-.catch {
-  font-weight: bold;
-  color: #2563eb;
-  margin: 4px 0;
-}
-
-.desc {
-  font-size: 14px;
-  color: #4b5563;
-  line-height: 1.5;
-}
-
-.info {
-  font-size: 13px;
-  color: #374151;
-}
-
-.favorite {
-  width: 100%;
-  border: none;
-  border-radius: 12px;
+  border-radius: 15px;
   padding: 10px;
-  background: #f59e0b;
-  color: white;
-  cursor: pointer;
-  margin-top: 8px;
+  scroll-snap-align: start;
+  transition: 0.3s;
 }
 
-.favorite.on {
-  background: #f97316;
+.card.active {
+  transform: scale(1.05);
 }
 
-.action-row {
+/* 画像 */
+.card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* お気に入り */
+.fav-row {
   display: flex;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-.action-row button {
-  flex: 1;
-  border: none;
-  border-radius: 12px;
-  padding: 9px;
-  background: #3b82f6;
-  color: white;
-  cursor: pointer;
-}
-
-.favorite-list {
-  display: flex;
-  flex-wrap: wrap;
   gap: 10px;
-}
-
-.favorite-list button {
-  background: #fff7ed;
-  color: #c2410c;
-}
-
-.empty {
-  color: #6b7280;
-}
-
-@media (max-width: 768px) {
-  .app {
-    padding: 12px;
-  }
-
-  .hero h1 {
-    font-size: 28px;
-  }
-
-  .map-box {
-    height: 260px;
-  }
-
-  .spot-card {
-    min-width: 240px;
-    max-width: 240px;
-  }
+  flex-wrap: wrap;
 }
