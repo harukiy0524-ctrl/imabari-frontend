@@ -1,50 +1,114 @@
-// OpenRouteService APIキーを入れる
-const ORS_KEY = "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6ImRmY2FkODU1NDI3OTQ0OGJhYjA4NDVmZDVmNDAyNGFiIiwiaCI6Im11cm11cjY0In0=";
+// =============================
+// 距離計算（メートル）
+// =============================
+export const getDistance = (lat1, lng1, lat2, lng2) => {
+  const R = 6371e3;
+  const toRad = x => x * Math.PI / 180;
 
-// ルート取得
-export const getRoute = async (start, end, mode = "walk") => {
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
 
-  const profile =
-    mode === "bike"
-      ? "cycling-regular"
-      : "foot-walking";
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(toRad(lat1)) *
+    Math.cos(toRad(lat2)) *
+    Math.sin(dLng / 2) * Math.sin(dLng / 2);
 
-  try {
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-    const res = await fetch(
-      `https://api.openrouteservice.org/v2/directions/${profile}/geojson`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: ORS_KEY
-        },
-        body: JSON.stringify({
-          coordinates: [
-            [start[1], start[0]],
-            [end.lng, end.lat]
-          ]
-        })
-      }
-    );
+  return R * c;
+};
 
-    const data = await res.json();
+// =============================
+// 方角（角度）計算
+// =============================
+export const getBearing = (lat1, lng1, lat2, lng2) => {
+  const toRad = x => x * Math.PI / 180;
+  const toDeg = x => x * 180 / Math.PI;
 
-    if (!data.features) return null;
+  const y = Math.sin(toRad(lng2 - lng1)) * Math.cos(toRad(lat2));
+  const x =
+    Math.cos(toRad(lat1)) * Math.sin(toRad(lat2)) -
+    Math.sin(toRad(lat1)) *
+    Math.cos(toRad(lat2)) *
+    Math.cos(toRad(lng2 - lng1));
 
-    const coords =
-      data.features[0].geometry.coordinates.map(c => [c[1], c[0]]);
+  return (toDeg(Math.atan2(y, x)) + 360) % 360;
+};
 
-    const summary = data.features[0].properties.summary;
+// =============================
+// 左右判定
+// =============================
+export const getTurnDirection = (prev, current, next) => {
+  const b1 = getBearing(prev.lat, prev.lng, current.lat, current.lng);
+  const b2 = getBearing(current.lat, current.lng, next.lat, next.lng);
 
-    return {
-      coords,
-      distance: summary.distance,
-      duration: summary.duration
-    };
+  let diff = b2 - b1;
 
-  } catch (e) {
-    console.error("ルート取得エラー", e);
-    return null;
+  if (diff > 180) diff -= 360;
+  if (diff < -180) diff += 360;
+
+  if (diff > 30) return "right";
+  if (diff < -30) return "left";
+  return "straight";
+};
+
+// =============================
+// 曲がるポイント抽出
+// =============================
+export const extractTurns = (route) => {
+  const turns = [];
+
+  for (let i = 1; i < route.length - 1; i++) {
+    const prev = route[i - 1];
+    const current = route[i];
+    const next = route[i + 1];
+
+    const turn = getTurnDirection(prev, current, next);
+
+    if (turn !== "straight") {
+      turns.push({
+        ...current,
+        type: turn
+      });
+    }
   }
+
+  return turns;
+};
+
+// =============================
+// ナビテキスト（多言語対応）
+// =============================
+export const getNavText = (distance, turn, lang = "ja") => {
+
+  const texts = {
+    ja: {
+      right: "右に曲がる",
+      left: "左に曲がる",
+      straight: "まっすぐ進む"
+    },
+    en: {
+      right: "turn right",
+      left: "turn left",
+      straight: "go straight"
+    },
+    zh: {
+      right: "右转",
+      left: "左转",
+      straight: "直行"
+    },
+    ko: {
+      right: "오른쪽으로",
+      left: "왼쪽으로",
+      straight: "직진"
+    }
+  };
+
+  const dir = texts[lang][turn];
+
+  if (distance > 300) return `⬆ ${texts[lang].straight}`;
+  if (distance > 200) return `➡ 200m ${dir}`;
+  if (distance > 50) return `➡ 50m ${dir}`;
+  return `➡ ${dir}`;
 };

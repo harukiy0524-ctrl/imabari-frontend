@@ -1,65 +1,163 @@
-export const COURSES = [
+export const courses = [
 
-{ name:{ja:"王道コース"}, spots:["今治城","来島海峡大橋","亀老山展望公園"] },
+  // ===== ① 王道観光コース =====
+  {
+    id: "course_1",
+    name: "王道観光",
+    type: "徒歩",
+    spots: [
+      "imabari_castle",
+      "imabari_towel",
+      "yakitori_maruya"
+    ]
+  },
 
-{ name:{ja:"しまなみ絶景"}, spots:["サンライズ糸山","来島海峡大橋","多々羅大橋"] },
+  // ===== ② サイクリング入門 =====
+  {
+    id: "course_2",
+    name: "サイクリング体験",
+    type: "自転車",
+    spots: [
+      "sunrise_itoyama",
+      "kurushima_view",
+      "kirosan"
+    ]
+  },
 
-{ name:{ja:"歴史巡り"}, spots:["今治城","大山祇神社","大三島神社群"] },
+  // ===== ③ カフェ巡り =====
+  {
+    id: "course_3",
+    name: "カフェ巡り",
+    type: "自転車",
+    spots: [
+      "paysan",
+      "cafe_shozan",
+      "suerte"
+    ]
+  },
 
-{ name:{ja:"温泉巡り"}, spots:["鈍川温泉","朝倉温泉","玉川温泉"] },
+  // ===== ④ 絶景コース =====
+  {
+    id: "course_4",
+    name: "絶景巡り",
+    type: "自転車",
+    spots: [
+      "sunrise_itoyama",
+      "kurushima_view",
+      "kirosan"
+    ]
+  },
 
-{ name:{ja:"島めぐり"}, spots:["伯方島","大三島","生口島"] },
+  // ===== ⑤ 大三島観光 =====
+  {
+    id: "course_5",
+    name: "大三島観光",
+    type: "車",
+    spots: [
+      "oomishima_shrine",
+      "limone",
+      "lemontable"
+    ]
+  },
 
-{ name:{ja:"グルメ旅"}, spots:["今治ラーメン店","イオンモール今治新都市"] },
+  // ===== ⑥ グルメコース =====
+  {
+    id: "course_6",
+    name: "グルメ巡り",
+    type: "車",
+    spots: [
+      "yakitori_maruya",
+      "paysan",
+      "oufu_i"
+    ]
+  },
 
-{ name:{ja:"海沿いドライブ"}, spots:["桜井海岸","伯方ビーチ"] },
+  // ===== ⑦ 体験コース =====
+  {
+    id: "course_7",
+    name: "体験コース",
+    type: "車",
+    spots: [
+      "towel_museum",
+      "kobo_oriza",
+      "mikan_farm"
+    ]
+  },
 
-{ name:{ja:"自然満喫"}, spots:["朝倉ダム","玉川ダム"] },
+  // ===== ⑧ 温泉コース =====
+  {
+    id: "course_8",
+    name: "温泉リラックス",
+    type: "車",
+    spots: [
+      "onsen",
+      "tamagawa_museum"
+    ]
+  },
 
-{ name:{ja:"美術館コース"}, spots:["タオル美術館","大三島美術館"] },
+  // ===== ⑨ ファミリー =====
+  {
+    id: "course_9",
+    name: "ファミリー向け",
+    type: "車",
+    spots: [
+      "saisaikitei",
+      "ichigo_farm",
+      "towel_museum"
+    ]
+  },
 
-{ name:{ja:"ゆる観光"}, spots:["今治駅","今治商店街"] },
+  // ===== ⑩ 写真スポット =====
+  {
+    id: "course_10",
+    name: "写真スポット",
+    type: "自転車",
+    spots: [
+      "kirosan",
+      "kurushima_view",
+      "yoshiumi_rose"
+    ]
+  },
 
-// ▼ここから追加拡張
+  // ===== ⑪ のんびり =====
+  {
+    id: "course_11",
+    name: "のんびり観光",
+    type: "徒歩",
+    spots: [
+      "imabari_castle",
+      "cafe_shozan",
+      "imabari_towel"
+    ]
+  },
 
-{ name:{ja:"夕日スポット"}, spots:["亀老山展望公園","来島SA"] },
+  // ===== ⑫ 1日満喫 =====
+  {
+    id: "course_12",
+    name: "1日満喫コース",
+    type: "車",
+    spots: [
+      "sunrise_itoyama",
+      "kirosan",
+      "oomishima_shrine",
+      "wakka"
+    ]
+  },
 
-{ name:{ja:"サイクリング初級"}, spots:["サンライズ糸山","来島海峡大橋"] },
+  // ===== ⑬ フル観光 =====
+  {
+    id: "course_13",
+    name: "フル観光",
+    type: "車",
+    spots: [
+      "imabari_castle",
+      "sunrise_itoyama",
+      "kirosan",
+      "oomishima_shrine",
+      "towel_museum",
+      "onsen"
+    ]
+  }
 
-{ name:{ja:"サイクリング上級"}, spots:["サンライズ糸山","多々羅大橋","生口島"] },
-
-{ name:{ja:"港巡り"}, spots:["今治港","波止浜港","宮浦港"] },
-
-{ name:{ja:"橋めぐり"}, spots:["来島海峡大橋","多々羅大橋"] },
-
-{ name:{ja:"展望台巡り"}, spots:["亀老山展望公園","伯方島展望台"] },
-
-{ name:{ja:"神社巡り"}, spots:["大山祇神社","大三島神社群"] },
-
-{ name:{ja:"温泉ゆったり"}, spots:["鈍川温泉","大三島温泉"] },
-
-{ name:{ja:"ショッピング"}, spots:["イオンモール今治新都市","今治商店街"] },
-
-{ name:{ja:"ホテル周辺"}, spots:["今治国際ホテル","今治城"] },
-
-{ name:{ja:"海＋橋"}, spots:["桜井海岸","来島海峡大橋"] },
-
-{ name:{ja:"家族向け"}, spots:["桜井総合公園","タオル美術館"] },
-
-{ name:{ja:"短時間観光"}, spots:["今治駅","今治城"] },
-
-{ name:{ja:"1日満喫"}, spots:["今治城","来島海峡大橋","亀老山展望公園","大山祇神社"] },
-
-{ name:{ja:"写真スポット"}, spots:["亀老山展望公園","多々羅大橋","来島海峡大橋"] },
-
-{ name:{ja:"島グルメ"}, spots:["伯方島","大三島"] },
-
-{ name:{ja:"ドライブ満喫"}, spots:["しまなみ海道","来島SA"] },
-
-{ name:{ja:"自然＋温泉"}, spots:["朝倉ダム","鈍川温泉"] },
-
-{ name:{ja:"夜景スポット"}, spots:["今治市役所展望","来島海峡大橋"] },
-
-{ name:{ja:"全部入り"}, spots:["今治城","来島海峡大橋","亀老山展望公園","大山祇神社","多々羅大橋"] }
-
+];
 ];
