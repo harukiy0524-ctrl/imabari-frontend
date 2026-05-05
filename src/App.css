@@ -1,44 +1,29 @@
-/* ===== 全体 ===== */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: sans-serif;
   background: #f3f4f6;
-  color: #111827;
 }
 
 .app {
-  max-width: 1100px;
+  max-width: 1000px;
   margin: auto;
   padding: 20px;
 }
 
-/* ===== タイトル ===== */
 h1 {
   font-size: 32px;
-  margin-bottom: 10px;
 }
 
-/* ===== 言語ボタン ===== */
-.lang {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.lang button {
+/* ボタン */
+button {
   border: none;
-  border-radius: 999px;
+  border-radius: 20px;
   padding: 8px 14px;
+  margin: 5px;
   background: #e5e7eb;
-  cursor: pointer;
-  transition: 0.2s;
 }
 
-.lang button:hover {
-  background: #d1d5db;
-}
-
-/* ===== コース ===== */
+/* コース */
 .course-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -46,54 +31,22 @@ h1 {
 }
 
 .course-buttons button {
-  border: none;
-  border-radius: 999px;
-  padding: 10px 16px;
   background: #3b82f6;
   color: white;
-  cursor: pointer;
-  transition: 0.2s;
 }
 
-.course-buttons button:hover {
-  background: #2563eb;
-}
-
-/* ===== 地図 ===== */
+/* 地図 */
 .map-box {
   height: 300px;
-  margin-top: 15px;
-  border-radius: 16px;
+  border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-.leaflet-container {
-  width: 100%;
-  height: 100%;
-}
-
-/* ===== お気に入り ===== */
-.fav-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.fav-row button {
-  background: #fff7ed;
-  color: #c2410c;
-  border-radius: 20px;
-  padding: 8px 14px;
-  border: none;
-}
-
-/* ===== 横スクロールカード ===== */
+/* 横スクロール */
 .spots-row {
   display: flex;
-  gap: 16px;
+  gap: 15px;
   overflow-x: auto;
-  padding: 10px 0 20px;
   scroll-snap-type: x mandatory;
 }
 
@@ -101,94 +54,31 @@ h1 {
   display: none;
 }
 
-/* ===== カード ===== */
+/* カード */
 .card {
   min-width: 260px;
-  max-width: 260px;
   background: white;
-  border-radius: 18px;
-  padding: 12px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  border-radius: 15px;
+  padding: 10px;
   scroll-snap-align: start;
-  transition: 0.25s;
-  cursor: pointer;
+  transition: 0.3s;
 }
 
 .card.active {
   transform: scale(1.05);
-  box-shadow: 0 12px 26px rgba(0,0,0,0.25);
 }
 
-/* ===== 画像 ===== */
+/* 画像 */
 .card img {
   width: 100%;
   height: 140px;
   object-fit: cover;
-  border-radius: 12px;
-}
-
-/* ===== テキスト ===== */
-.card h3 {
-  font-size: 17px;
-  margin: 10px 0 5px;
-}
-
-.card p {
-  font-size: 14px;
-  color: #4b5563;
-}
-
-/* ===== 距離表示 ===== */
-.card p:nth-of-type(2) {
-  font-size: 13px;
-  color: #2563eb;
-}
-
-/* ===== ボタン ===== */
-.card button {
-  margin-top: 6px;
-  margin-right: 5px;
-  border: none;
   border-radius: 10px;
-  padding: 6px 10px;
-  font-size: 13px;
-  cursor: pointer;
 }
 
-/* ⭐ */
-.card button:nth-of-type(1) {
-  background: #f59e0b;
-  color: white;
-}
-
-/* 🔊 */
-.card button:nth-of-type(2) {
-  background: #10b981;
-  color: white;
-}
-
-/* 🚗 */
-.card button:nth-of-type(3) {
-  background: #3b82f6;
-  color: white;
-}
-
-/* ===== スマホ対応 ===== */
-@media (max-width: 768px) {
-  .app {
-    padding: 12px;
-  }
-
-  h1 {
-    font-size: 24px;
-  }
-
-  .map-box {
-    height: 240px;
-  }
-
-  .card {
-    min-width: 220px;
-    max-width: 220px;
-  }
+/* お気に入り */
+.fav-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
