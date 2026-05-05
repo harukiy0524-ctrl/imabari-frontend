@@ -527,3 +527,5 @@ export const spots_part2 = [
   }
 
 ];
+
+export const spots = [...spots_part1, ...spots_part2];
