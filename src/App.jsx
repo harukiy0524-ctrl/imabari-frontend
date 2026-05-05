@@ -16,6 +16,15 @@ export default function App() {
   const [currentPos, setCurrentPos] = useState(null);
 
   const mapRef = useRef();
+  const routingRef = useRef(); // ← 重要
+
+  // 🌍 Googleナビ
+  const openGoogleNav = (spot) => {
+    window.open(
+      `https://www.google.com/maps/dir/?api=1&destination=${spot.lat},${spot.lng}`,
+      "_blank"
+    );
+  };
 
   // 多言語
   const getText = (obj) => {
@@ -24,29 +33,42 @@ export default function App() {
     return obj[lang] || obj.ja || "";
   };
 
-  // 現在地
+  // 📍 現在地取得（安全版）
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((pos) => {
-      setCurrentPos([pos.coords.latitude, pos.coords.longitude]);
-    });
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setCurrentPos([pos.coords.latitude, pos.coords.longitude]);
+      },
+      () => {
+        console.log("位置情報取得NG");
+      }
+    );
   }, []);
 
-  // ルート表示
+  // 🚗 ルート表示（修正版）
   useEffect(() => {
     if (!mapRef.current || !routeTarget || !currentPos) return;
 
     const map = mapRef.current;
 
-    L.Routing.control({
+    // 既存ルート削除
+    if (routingRef.current) {
+      map.removeControl(routingRef.current);
+    }
+
+    routingRef.current = L.Routing.control({
       waypoints: [
         L.latLng(currentPos[0], currentPos[1]),
         L.latLng(routeTarget.lat, routeTarget.lng),
       ],
       lineOptions: { styles: [{ color: "#2563eb", weight: 5 }] },
       addWaypoints: false,
+      draggableWaypoints: false,
     }).addTo(map);
+
   }, [routeTarget, currentPos]);
 
+  // カテゴリ
   const categories = ["すべて", ...new Set(spots.map((s) => s.category))];
 
   const filteredSpots =
@@ -54,6 +76,7 @@ export default function App() {
       ? spots
       : spots.filter((s) => s.category === selectedCategory);
 
+  // ⭐ お気に入り
   const toggleFavorite = (id) => {
     setFavorites((prev) =>
       prev.includes(id)
@@ -66,7 +89,7 @@ export default function App() {
     <div className="app">
       <h1>今治観光ナビ</h1>
 
-      {/* 言語 */}
+      {/* 🌐 言語 */}
       <div className="lang">
         {["ja", "en", "zh", "ko"].map((l) => (
           <button
@@ -79,7 +102,7 @@ export default function App() {
         ))}
       </div>
 
-      {/* カテゴリ */}
+      {/* 🎯 カテゴリ */}
       <div className="filter">
         {categories.map((cat) => (
           <button
@@ -92,7 +115,7 @@ export default function App() {
         ))}
       </div>
 
-      {/* 地図 */}
+      {/* 🗺 地図 */}
       <div className="map-box">
         <MapContainer
           center={[34.06, 133.0]}
@@ -102,6 +125,14 @@ export default function App() {
         >
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
+          {/* 現在地ピン */}
+          {currentPos && (
+            <Marker position={currentPos}>
+              <Popup>現在地</Popup>
+            </Marker>
+          )}
+
+          {/* スポット */}
           {filteredSpots.map((spot) => (
             <Marker key={spot.id} position={[spot.lat, spot.lng]}>
               <Popup>{getText(spot.name)}</Popup>
@@ -110,17 +141,21 @@ export default function App() {
         </MapContainer>
       </div>
 
-      {/* お気に入り */}
+      {/* ⭐ お気に入り */}
       <h2>⭐ お気に入り</h2>
       <div className="fav-row">
         {favorites.length === 0 && <p>まだなし</p>}
         {favorites.map((id) => {
           const spot = spots.find((s) => s.id === id);
-          return <button className="fav-item">{getText(spot.name)}</button>;
+          return (
+            <button key={id} className="fav-item">
+              {getText(spot.name)}
+            </button>
+          );
         })}
       </div>
 
-      {/* スポット */}
+      {/* 📦 スポット */}
       <h2>詳細</h2>
       <div className="spots-row">
         {filteredSpots.map((spot) => (
@@ -138,18 +173,31 @@ export default function App() {
               <p>{getText(spot.desc)}</p>
 
               <div className="btn-row">
+                {/* ⭐ */}
                 <button
-                  className="btn btn-fav"
+                  className={`btn btn-fav ${
+                    favorites.includes(spot.id) ? "on" : ""
+                  }`}
                   onClick={() => toggleFavorite(spot.id)}
                 >
                   ★
                 </button>
 
+                {/* 🔊 */}
                 <button className="btn btn-speak">🔊</button>
 
+                {/* 📍 アプリ内 */}
                 <button
                   className="btn btn-map"
                   onClick={() => setRouteTarget(spot)}
+                >
+                  📍
+                </button>
+
+                {/* 🚗 Google */}
+                <button
+                  className="btn btn-map"
+                  onClick={() => openGoogleNav(spot)}
                 >
                   🚗
                 </button>
