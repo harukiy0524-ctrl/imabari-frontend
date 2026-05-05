@@ -210,6 +210,160 @@ lat:34.247927,lng:133.005731
 
 ];
 
+export const spots_part3 = [
+
+{
+id:"rose_park",
+name:{
+  ja:"吉海バラ公園",
+  en:"Yoshiumi Rose Park",
+  zh:"玫瑰公园",
+  ko:"장미 공원"
+},
+catch:{
+  ja:"バラの名所",
+  en:"Rose garden",
+  zh:"玫瑰景点",
+  ko:"장미 명소"
+},
+desc:{
+  ja:"多くのバラが咲く公園。",
+  en:"A park full of roses.",
+  zh:"盛开玫瑰的公园。",
+  ko:"장미가 많은 공원."
+},
+image:"https://images.unsplash.com/photo-1525310072745-f49212b5ac6d",
+address:"今治市吉海町福田1292",
+lat:34.158,lng:133.04
+},
+
+{
+id:"roadside",
+name:{
+  ja:"道の駅よしうみいきいき館",
+  en:"Roadside Station",
+  zh:"道之站",
+  ko:"휴게소"
+},
+catch:{
+  ja:"海鮮BBQ",
+  en:"Seafood BBQ",
+  zh:"海鲜BBQ",
+  ko:"해산물 BBQ"
+},
+desc:{
+  ja:"海鮮が楽しめる道の駅。",
+  en:"Enjoy fresh seafood.",
+  zh:"可以吃海鲜。",
+  ko:"해산물 즐길 수 있음."
+},
+image:"https://images.unsplash.com/photo-1504674900247-0877df9cc836",
+address:"今治市吉海町名4520-2",
+lat:34.16,lng:133.02
+},
+
+{
+id:"saisaikitei",
+name:{
+  ja:"さいさいきて屋",
+  en:"Saisaikitei",
+  zh:"农产市场",
+  ko:"농산물 시장"
+},
+catch:{
+  ja:"地元野菜",
+  en:"Local market",
+  zh:"当地市场",
+  ko:"로컬 시장"
+},
+desc:{
+  ja:"新鮮な野菜が買える。",
+  en:"Fresh vegetables available.",
+  zh:"可以买新鲜蔬菜。",
+  ko:"신선한 야채."
+},
+image:"https://images.unsplash.com/photo-1506806732259-39c2d0268443",
+address:"今治市中寺279-1",
+lat:34.05,lng:133.01
+},
+
+{
+id:"ichigo",
+name:{
+  ja:"しまなみいちご園",
+  en:"Strawberry Farm",
+  zh:"草莓园",
+  ko:"딸기 농장"
+},
+catch:{
+  ja:"いちご狩り",
+  en:"Strawberry picking",
+  zh:"采草莓",
+  ko:"딸기 체험"
+},
+desc:{
+  ja:"いちご狩り体験ができる。",
+  en:"Pick strawberries.",
+  zh:"可以采草莓。",
+  ko:"딸기 체험 가능."
+},
+image:"https://images.unsplash.com/photo-1464965911861-746a04b4bca9",
+address:"今治市中寺284-1",
+lat:34.05,lng:133.01
+},
+
+{
+id:"bar_ameri",
+name:{
+  ja:"うみまちバル アメリ",
+  en:"Bar Ameri",
+  zh:"酒吧",
+  ko:"바"
+},
+catch:{
+  ja:"おしゃれバル",
+  en:"Stylish bar",
+  zh:"时尚酒吧",
+  ko:"감성 바"
+},
+desc:{
+  ja:"海の近くのバル。",
+  en:"Bar near the sea.",
+  zh:"靠海的酒吧。",
+  ko:"바다 근처 바."
+},
+image:"https://images.unsplash.com/photo-1514933651103-005eec06c04b",
+address:"今治市大三島町大見2559",
+lat:34.25,lng:133.01
+},
+
+{
+id:"aroma",
+name:{
+  ja:"島香房",
+  en:"Aroma Shop",
+  zh:"香薰店",
+  ko:"아로마"
+},
+catch:{
+  ja:"香り体験",
+  en:"Aroma experience",
+  zh:"香味体验",
+  ko:"향 체험"
+},
+desc:{
+  ja:"柑橘の香り体験。",
+  en:"Citrus aroma experience.",
+  zh:"柑橘香味体验。",
+  ko:"향 체험 가능."
+},
+image:"https://images.unsplash.com/photo-1505575972945-280b0b0d2b1b",
+address:"今治市上浦町盛1325",
+lat:34.24,lng:133.04
+}
+
+];
+
 export const spots = [
   ...spots_part1,
   ...spots_part2,
