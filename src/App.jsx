@@ -60,14 +60,19 @@ function App() {
 
       {/* 言語 */}
       <div className="lang">
-        <button onClick={() => setLang("ja")}>日本語</button>
-        <button onClick={() => setLang("en")}>EN</button>
-        <button onClick={() => setLang("zh")}>中文</button>
-        <button onClick={() => setLang("ko")}>한국어</button>
+        {["ja","en","zh","ko"].map(l => (
+          <button
+            key={l}
+            className={lang===l ? "active" : ""}
+            onClick={()=>setLang(l)}
+          >
+            {l==="ja"?"日本語":l==="en"?"English":l==="zh"?"中文":"한국어"}
+          </button>
+        ))}
       </div>
 
       {/* コース */}
-      <h2>コース</h2>
+      <h2>コース選択</h2>
       <div className="course-buttons">
         {courses.map((c) => (
           <button key={c.id} onClick={() => setSelectedCourse(c)}>
@@ -85,11 +90,9 @@ function App() {
             style={{ height: "300px" }}
           >
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-
             {coords.map((pos, i) => (
               <Marker key={i} position={pos} />
             ))}
-
             <Polyline positions={coords} />
           </MapContainer>
         </div>
@@ -101,9 +104,8 @@ function App() {
         {favorites.map((id) => {
           const spot = spots.find((s) => s.id === id);
           if (!spot) return null;
-
           return (
-            <div key={id} className="card">
+            <div key={id} className="card small">
               <img src={spot.image || "https://via.placeholder.com/300"} />
               <h3>{spot.name?.[lang] || spot.name?.ja}</h3>
             </div>
@@ -130,9 +132,7 @@ function App() {
                   </div>
 
                   <h3>{spot.name?.[lang] || spot.name?.ja}</h3>
-
                   <p>{spot.desc?.[lang] || spot.desc?.ja}</p>
-
                   <p>📍 {spot.address?.[lang] || spot.address}</p>
                   <p>⏰ {spot.hours?.[lang] || spot.hours}</p>
 
@@ -152,20 +152,10 @@ function App() {
 
                   {/* サブ */}
                   <div className="sub-buttons">
-                    <button onClick={() => speak(spot.desc?.[lang] || "")}>
-                      🔊
-                    </button>
-
-                    <button
-                      onClick={() =>
-                        window.open(
-                          `https://www.google.com/maps?q=${spot.lat},${spot.lng}`
-                        )
-                      }
-                    >
-                      🚗
-                    </button>
+                    <button onClick={() => speak(spot.desc?.[lang] || "")}>🔊</button>
+                    <button onClick={() => window.open(`https://www.google.com/maps?q=${spot.lat},${spot.lng}`)}>🚗</button>
                   </div>
+
                 </div>
               );
             })}
